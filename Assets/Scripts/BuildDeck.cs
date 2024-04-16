@@ -34,10 +34,14 @@ public class BuildDeck : MonoBehaviour
     void Start()
     {
        
-      
+        
         //create a deck of cards
         for (int i = 0; i < 17; i++)
         {
+            TMP_Text nam = Instantiate(nombre, transform.position, Quaternion.identity);
+            TMP_Text no = Instantiate(numeroC, transform.position, Quaternion.identity);
+            TMP_Text atk = Instantiate(ataque, transform.position, Quaternion.identity);
+            TMP_Text def = Instantiate(defensa, transform.position, Quaternion.identity);
             deck[i] = Resources.Load<GameObject>("Prefabs/"+(i+1));
 
             //create a new card
@@ -50,14 +54,36 @@ public class BuildDeck : MonoBehaviour
 
             //set parent of a object in the scene
             //newCard.transform.parent = GameObject.Find("Content").transform;
-
+            //keep the size of the card the same
+            newCard.transform.localScale = new Vector3(1, 1, 1);
+            //set text in TMP
+            nam.transform.SetParent(newCard.transform);
+            nam.transform.localScale = new Vector3(1, 1, 1);
+            no.transform.SetParent(newCard.transform);
+            no.transform.localScale = new Vector3(1, 1, 1);
+            atk.transform.SetParent(newCard.transform);
+            atk.transform.localScale = new Vector3(1, 1, 1);
+            def.transform.SetParent(newCard.transform);
+            def.transform.localScale = new Vector3(1, 1, 1);
+  
+            //change the position of the TMP
+            nam.transform.localPosition = new Vector3(-300, -19, 0);
+            no.transform.localPosition = new Vector3(-355,-20, 0);
+            atk.transform.localPosition = new Vector3(330, -15, 0);
+            def.transform.localPosition = new Vector3(330, -22, 0);
+    
+           
             //set the name of the new card
             newCard.name = "" + (i+1);
 
             //keep the size of the card the same
             newCard.transform.localScale = new Vector3(1, 1, 1);
             //save cardscript
-           
+            
+            nam.text = cardsScriptD[i].cardName;
+            no.text = ""+cardsScriptD[i].cardNumber;
+            atk.text = ""+cardsScriptD[i].atack;
+            def.text = ""+cardsScriptD[i].defence;
             //save the name of the card
            // namex[i] = newCard.GetComponent<nameOfCards>();
         }
