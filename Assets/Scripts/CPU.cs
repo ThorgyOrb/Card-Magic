@@ -147,7 +147,7 @@ public class CPU : MonoBehaviour
         //rotate card
         card.transform.Rotate(-90, 0, 0);
         //change the tag of the card
-        card.tag = "cardField";
+        card.tag = "cardFieldEnemy";
         //compare cardSpawn attack with fieldPlayer
         for (int i = 0; i < 5; i++)
         {
@@ -237,7 +237,7 @@ IEnumerator spa(){
         //rotate card
         card.transform.Rotate(-90, 0, 0);
         //change the tag of the card
-        card.tag = "cardField";
+        card.tag = "cardFieldEnemy";
         //compare cardSpawn attack with fieldPlayer
         for (int i = 0; i < 5; i++)
         {

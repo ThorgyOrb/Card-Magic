@@ -228,22 +228,39 @@ public class gameManagger : MonoBehaviour
             //raycast
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit) && hit.collider.gameObject.tag == "cardField")
+            if (Physics.Raycast(ray, out hit))
             {
                 //add card to battle
                 for (int i = 0; i < 2; i++)
                 {
-                    if (battle[i] == null )
+                    if (battle[0] == null && hit.collider.gameObject.tag == "cardField")
                     {
-                        battle[i] = hit.collider.gameObject;
-                        cardsF[i] = battle[i].GetComponent<cards>();
-                        Debug.Log(cardsF[i].name);
-                        cardsName[i] = cardsF[i].name;
-                        if(cardsF[i].atk == false)
+                        i+=1;
+                        battle[0] = hit.collider.gameObject;
+                        cardsF[0] = battle[0].GetComponent<cards>();
+                        Debug.Log(cardsF[0].name);
+                        cardsName[0] = cardsF[0].name;
+                        if(cardsF[0].atk == false)
                         {
-                            battle[i]= null;
-                            cardsF[i] = null;
-                            cardsName[i] = null;
+                            battle[0]= null;
+                            cardsF[0] = null;
+                            cardsName[0] = null;
+                        }
+                     
+                        
+                        Debug.Log(i);
+                        break;
+                    }
+                    if (battle[1] == null && hit.collider.gameObject.tag == "cardFieldEnemy")
+                    {
+                        battle[1] = hit.collider.gameObject;
+                        cardsF[1] = battle[1].GetComponent<cards>();
+                        cardsName[1] = cardsF[1].name;
+                        if (cardsF[1].atk == false)
+                        {
+                            battle[1] = null;
+                            cardsF[1] = null;
+                            cardsName[1] = null;
                         }
                         break;
                     }
